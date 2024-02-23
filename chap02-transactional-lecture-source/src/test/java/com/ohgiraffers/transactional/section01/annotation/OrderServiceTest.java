@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +18,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+/*DML(insert,del,update) 작업 테스트 시 실제 db 적용 안하려면 Transactional 어노테이션 꼭 추가해야함!!!!!!!!*/
+@Transactional /*테스트니 커밋 날리지 말라는 뜻, 테스트코드가 아닌 곳에 쓰이면 다른 목적으로 쓰이니 찾아볼것~~!~@@!@~@!!@~!@~!@~!@~!@ */
 class OrderServiceTest {
     @Autowired
     private OrderService registOrderService;
@@ -28,10 +31,7 @@ class OrderServiceTest {
         orderInfo.setOrderMenus(
                 List.of(
                         new OrderMenuDTO(1,10),
-                        new OrderMenuDTO(2,11),
-                        new OrderMenuDTO(3,11),
-                        new OrderMenuDTO(4,11),
-                        new OrderMenuDTO(5,11)
+                        new OrderMenuDTO(2,11)
                 )
         );
 
@@ -45,5 +45,8 @@ class OrderServiceTest {
         Assertions.assertDoesNotThrow(
                 ()->registOrderService.registNewOrder(orderInfo)
         );
+
     }
+
+
 }

@@ -13,6 +13,11 @@ public class OrderMenu {
         this.orderamount = orderamount;
     }
 
+    public OrderMenu(int menuCode, int orderamount) {
+        this.menuCode = menuCode;
+        this.orderamount = orderamount;
+    }
+
     public int getMenuCode() {
         return menuCode;
     }
@@ -32,5 +37,9 @@ public class OrderMenu {
                 ", orderCode=" + orderCode +
                 ", orderamount=" + orderamount +
                 '}';
+    }
+
+    public void setOrderCode(int orderCode) {
+        this.orderCode = orderCode;
     }
 }
