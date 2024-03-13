@@ -76,6 +76,7 @@ public class OrderService {
         /*1. 주문한 메뉴 코드 추출*/
         /*1-1. stream을 통한 방법*/
         List<Integer> menuCode = orderInfo.getOrderMenus().stream().map(OrderMenuDTO::getMenuCode).collect(Collectors.toList());
+
         /*1-2. foreach를 통한 방법*/
         List<Integer> menuCode2 = new ArrayList<>();
         List<OrderMenuDTO> orderMenus = orderInfo.getOrderMenus();
@@ -110,7 +111,6 @@ public class OrderService {
         List<OrderMenuDTO> orderMenuDTO = orderInfo.getOrderMenus();
         for(OrderMenuDTO menuDTO: orderMenuDTO)
             orderMenus2.add(new OrderMenu(menuDTO.getMenuCode(),menuDTO.getOrderAmount()));
-
         Order order = new Order(orderInfo.getOrderDate(),orderInfo.getOrderTime(),totalOrderPrice,orderMenus1);
         System.out.println("order = " + order);
 

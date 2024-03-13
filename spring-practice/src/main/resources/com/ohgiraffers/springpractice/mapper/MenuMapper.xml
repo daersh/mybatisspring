@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.mybatisspring.section01.factorybean.MenuMapper">
+
+    <resultMap id="boardList" type="com.ohgiraffers.springpractice.DTO.BoardDTO">
+        <id property="boardId" column="board_id"/>
+        <result property="boardTitle" column="board_title"/>
+        <result property="boardContent" column="board_content"/>
+        <result property="bdWriteDate" column="bd_write_date"/>
+        <result property="hits" column="hits"/>
+        <result property="bdReportCount" column="bd_report_count"/>
+        <result property="beOnOff" column="bd_onoff"/>
+        <result property="memberID" column="member_id"/>
+        <result property="imgId" column="img_id"/>
+    </resultMap>
+
+    <select id="selectAllBoard" resultMap="boardList">
+        SELECT
+               a.board_id
+             , a.board_title
+             , a.board_content
+             , a.bd_write_date
+             , a.hits
+             , a.bd_report_count
+             , a.bd_onoff
+             , b.name
+             , c.path
+          FROM board a
+          join member_info b on a.member_id = b.member_id
+          join image c on a.img_id = c.img_id
+    </select>
+
+</mapper>
